@@ -1,30 +1,18 @@
+import { getGifs } from "./helpers/getGifs"
+import { useState, useEffect } from "react";
 
 export const GifGrid = ({ category }) => {
- const getGifs = async () => {
-    const  url = `https://api.giphy.com/v1/gifs/search?api_key=CFLue9F4UkxllUDO9P3j3h0dPao0AWGH&q=${category}&limit=20`
-   
-    const resp = await fetch ( url );
-    const { data } = await resp.json ();
-   
-        const gifs = data.map( img => ({
-            id: img.id,
-            title: img.title,
-            url: img.url,
-            
+    const [counter, SetCounter] = useState(10);
 
-        }));
-    
-    console.log(gifs);
- 
-}
-    getGifs();
- 
- 
+    useEffect ( () => {
+        getGifs(category);
+    }, [])
+
     return (
    <>
    <h3>{ category } </h3>
-  
-   
+   <h5> { counter }</h5>
+   <button onClick={ () => SetCounter ( counter + 1)}> +1 </button>
    </>
   )
 }
