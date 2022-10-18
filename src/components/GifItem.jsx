@@ -1,4 +1,5 @@
-// import React from "react"
+import React from "react"
+
 export const GifItem = ({ title, url, id }) => {
   //  console.log({ title, url, id })
   return (
